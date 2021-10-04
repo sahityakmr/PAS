@@ -1,7 +1,7 @@
 <?php
 $host='localhost';
 $uname='root';
-$pwd='';
+$pwd='abc@123';
 $db='apsystem';
 $con = mysqli_connect($host,$uname,$pwd) or die("connection failed");
 mysqli_select_db($con,$db) or die("db selection failed");

@@ -9,7 +9,7 @@ if ($conn->connect_error) {
  die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT image_name FROM employee";
+$sql = "SELECT image_name FROM emp";
 
 $result = $conn->query($sql);
 

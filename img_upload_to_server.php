@@ -26,7 +26,7 @@ $conn = new mysqli($HostName, $HostUser, $HostPass, $DatabaseName);
  
  $ImagePath = "$DefaultId.png";
  
- $ServerURL = "Payroll_and_Attendance_system/images/$ImagePath";
+ $ServerURL = "http://192.168.1.106:80/Android/$ImagePath";
 
 
  $InsertSQL = "insert into photo (image_path,image_name) values ('$ServerURL','$ImageName')";

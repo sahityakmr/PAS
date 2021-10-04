@@ -15,26 +15,21 @@ include 'DatabaseConfig.php' ;
  $imageid =$_POST['imageid'];
 
 
-
-//$i = uniqid($imageid, true);
+// generating unique id with prefix gfg
+// and higher entropy
+$i = uniqid($imageid, true);
  
 //echo $imageid;
 
 
 
 
- $Sql_Query = "insert into employee (f_name,l_name,mobile,aadhar_no,pan_no,dob,image_name) values ('$f_name','$l_name','$mobile','$aadhar_no','$pan_no','$dob','$imageid')";
+ $Sql_Query = "insert into employee (f_name,l_name,mobile,aadhar_no,pan_no,dob,image_name) values ('$f_name','$l_name','$mobile','$aadhar_no','$pan_no','$dob','$i')";
  
  if(mysqli_query($con,$Sql_Query))
 {
  
  echo 'Data Submit Successfully';
- $query = "delete from employee where dob = '0000-00-00'";
- if(mysqli_query($con,$query))
-{
- echo 'succesfull';
- session_destroy();
-} 
  session_destroy();
  
  }
@@ -48,7 +43,6 @@ include 'DatabaseConfig.php' ;
 
  }
 else{
-$imageid;
 echo 'do again';
 }
 
