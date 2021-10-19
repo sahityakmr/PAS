@@ -1,7 +1,7 @@
 <?php
 $dbName = "apsystem";
 $user = "root";
-$pwd = "abc@123";
+$pwd = "";
 $host = "localhost";
 $cnn = new PDO('mysql:dbname='.$dbName.';host='.$host, $user, $pwd);
 

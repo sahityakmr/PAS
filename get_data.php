@@ -13,7 +13,8 @@ include 'DatabaseConfig.php' ;
  $pan_no = $_POST['pan'];
  $dob = $_POST['dob'];
  $imageid =$_POST['imageid'];
-
+ $address = $_POST['address'];
+ $supervisor = $_POST['supervisor'];
 
 
 //$i = uniqid($imageid, true);
@@ -23,18 +24,14 @@ include 'DatabaseConfig.php' ;
 
 
 
- $Sql_Query = "insert into employee (f_name,l_name,mobile,aadhar_no,pan_no,dob,image_name) values ('$f_name','$l_name','$mobile','$aadhar_no','$pan_no','$dob','$imageid')";
+ // $Sql_Query = "insert into employee (f_name,l_name,mobile,aadhar_no,pan_no,dob,image_name) values ('$f_name','$l_name','$mobile','$aadhar_no','$pan_no','$dob','$imageid')";
+
+  $Sql_Query = "insert into employees (firstname,lastname,contact_info,aadhar,pan,birthdate,image_name,address,user_email) values ('$f_name','$l_name','$mobile','$aadhar_no','$pan_no','$dob','$imageid','$address','$supervisor')";
  
  if(mysqli_query($con,$Sql_Query))
 {
  
  echo 'Data Submit Successfully';
- $query = "delete from employee where dob = '0000-00-00'";
- if(mysqli_query($con,$query))
-{
- echo 'succesfull';
- session_destroy();
-} 
  session_destroy();
  
  }
@@ -48,7 +45,6 @@ include 'DatabaseConfig.php' ;
 
  }
 else{
-$imageid;
 echo 'do again';
 }
 

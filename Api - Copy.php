@@ -5,7 +5,7 @@
  //database constants
  define('DB_HOST', 'localhost');
  define('DB_USER', 'root');
- define('DB_PASS', 'abc@123');
+ define('DB_PASS', '');
  define('DB_NAME', 'android');
  
  //connecting to database and getting the connection object

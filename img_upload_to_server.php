@@ -26,6 +26,7 @@ $conn = new mysqli($HostName, $HostUser, $HostPass, $DatabaseName);
  
  $ImagePath = "$DefaultId.png";
  
+ //$ServerURL = "http://192.168.1.106:80/Android/$ImagePath";
  $ServerURL = "http://192.168.1.106:80/Android/$ImagePath";
 
 
@@ -37,22 +38,30 @@ $conn = new mysqli($HostName, $HostUser, $HostPass, $DatabaseName);
 
  echo "Your Image Has Been Uploaded.";
 
+ $update = "UPDATE employees set photo =  '$Image_Path' where image_name = '$ImageName'";
 
 
+if(mysqli_query($conn,$update))
+{
+ //file_put_contents($ImagePath,base64_decode($ImageData));
+ echo 'Data Submit Successfully';
+ session_destroy();
+ 
+ }
 
 
  }
- $tt="truncate employees";
- $Queryy = mysqli_query($conn,$tt);
+ // $tt="truncate employees";
+ // $Queryy = mysqli_query($conn,$tt);
 
 
- $Sql_Query = "insert into employees(firstname,lastname,birthdate,contact_info,aadhar,pan,photo,image_name)  select f_name as firstname, l_name as lastname, dob as birthdate, mobile as contact_info,aadhar_no as aadhar,pan_no as pan, image_path as photo,p.image_name  from employee AS e INNER JOIN photo AS p ON e.image_name=p.image_name";
+ // $Sql_Query = "insert into employees(firstname,lastname,birthdate,contact_info,aadhar,pan,photo,image_name)  select f_name as firstname, l_name as lastname, dob as birthdate, mobile as contact_info,aadhar_no as aadhar,pan_no as pan, image_path as photo,p.image_name  from employee AS e INNER JOIN photo AS p ON e.image_name=p.image_name";
 
- $Queryyy = mysqli_query($conn,$Sql_Query);
+ // $Queryyy = mysqli_query($conn,$Sql_Query);
 
- mysqli_close($conn);
- }else{
-  echo "Not Uploaded";
- }
+ // mysqli_close($conn);
+  }else{
+   echo "Not Uploaded";
+  }
 
 ?>

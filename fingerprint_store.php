@@ -22,6 +22,19 @@ include 'get_data.php';
  settype($longi,'float');
  $imageid =$_POST['imageid'];
 
+lat:
+longi:
+file:
+file2:
+file3:
+file4:
+file5:
+file6:
+file7:
+file8:
+file9:
+file10:
+
 
  $quert = "insert into biometric (latitude,longitude,fingerprint,fingerprint2,fingerprint3,fingerprint4,fingerprint5,fingerprint6,fingerprint7,fingerprint8,fingerprint9,fingerprint10,image_name) values ('$lat','$longi','$file','$file2','$file3','$file4','$file5','$file6','$file7','$file8','$file9','$file10','$imageid')";
  if(mysqli_query($con,$quert))

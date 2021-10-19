@@ -21,7 +21,7 @@ class DbConnect
  
         //connecting to mysql database
         $this->con = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-//$this->con = new mysqli('localhost', 'root', 'abc@123', 'apsystem');
+//$this->con = new mysqli('localhost', 'root', '', 'apsystem');
  
         //Checking if any error occured while connecting
         if (mysqli_connect_errno()) {
