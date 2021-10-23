@@ -2,6 +2,7 @@
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
 include 'DatabaseConfig.php';
+include guid.php;
 
  $con = mysqli_connect($HostName,$HostUser,$HostPass,$DatabaseName);
 
@@ -9,6 +10,9 @@ include 'DatabaseConfig.php';
  $L_name = $_POST['L_name'];
  $email = $_POST['email'];
  $password = $_POST['password'];
+ $new_GUID = createGUID();
+//echo "GUID :: ".$new_GUID;
+ $a = guidv4();
 
  $CheckSQL = "SELECT * FROM UserLoginTable WHERE user_email='$email'";
  
@@ -20,7 +24,7 @@ include 'DatabaseConfig.php';
 
  }
 else{ 
-$Sql_Query = "INSERT INTO UserLoginTable (first_name,last_name,user_email,user_password) values ('$F_name','$L_name','$email','$password')";
+$Sql_Query = "INSERT INTO userlogintable (id,first_name,last_name,user_email,user_password,s_id) values ('$a','$F_name','$L_name','$email','$password','$new_GUID')";
 
  if(mysqli_query($con,$Sql_Query))
 {

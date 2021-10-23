@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2021 at 11:54 PM
+-- Generation Time: Oct 23, 2021 at 10:06 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -75,7 +75,7 @@ INSERT INTO `attendance` (`id`, `employee_id`, `date`, `time_in`, `status`, `tim
 --
 
 CREATE TABLE `attendance_check` (
-  `id` int(11) NOT NULL,
+  `id` varchar(255) NOT NULL,
   `employee_id` int(11) DEFAULT NULL,
   `date` date NOT NULL,
   `time_in` time NOT NULL,
@@ -84,16 +84,16 @@ CREATE TABLE `attendance_check` (
   `num_hr` double DEFAULT NULL,
   `fingerprint` text NOT NULL,
   `latitude` float NOT NULL,
-  `longitude` float NOT NULL
+  `longitude` float NOT NULL,
+  `image_name` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attendance_check`
 --
 
-INSERT INTO `attendance_check` (`id`, `employee_id`, `date`, `time_in`, `status`, `time_out`, `num_hr`, `fingerprint`, `latitude`, `longitude`) VALUES
-(1, 29, '2021-10-08', '03:08:05', NULL, '03:08:26', NULL, 'w', 77.6907, 0),
-(2, 29, '2021-10-08', '03:13:14', NULL, NULL, NULL, 'w', 77.6907, 0);
+INSERT INTO `attendance_check` (`id`, `employee_id`, `date`, `time_in`, `status`, `time_out`, `num_hr`, `fingerprint`, `latitude`, `longitude`, `image_name`) VALUES
+('7264aedb-8121-4eb1-a9f2-550a00244703', NULL, '2021-10-23', '11:37:41', NULL, '11:38:16', NULL, '', 43.57, 23.67, NULL);
 
 -- --------------------------------------------------------
 
@@ -137,16 +137,16 @@ CREATE TABLE `biometric` (
   `fingerprint7` text DEFAULT NULL,
   `fingerprint8` text DEFAULT NULL,
   `fingerprint9` text DEFAULT NULL,
-  `fingerprint10` text DEFAULT NULL
+  `fingerprint10` text DEFAULT NULL,
+  `id` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `biometric`
 --
 
-INSERT INTO `biometric` (`latitude`, `longitude`, `fingerprint`, `image_name`, `fingerprint2`, `fingerprint3`, `fingerprint4`, `fingerprint5`, `fingerprint6`, `fingerprint7`, `fingerprint8`, `fingerprint9`, `fingerprint10`) VALUES
-(28.9617, 77.6907, 'q', 'gf', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'),
-(28.9617, 77.6907, 'a', 'tr', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z');
+INSERT INTO `biometric` (`latitude`, `longitude`, `fingerprint`, `image_name`, `fingerprint2`, `fingerprint3`, `fingerprint4`, `fingerprint5`, `fingerprint6`, `fingerprint7`, `fingerprint8`, `fingerprint9`, `fingerprint10`, `id`) VALUES
+(23, 43, 'q', 'ss', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'w', '7264aedb-8121-4eb1-a9f2-550a00244703');
 
 -- --------------------------------------------------------
 
@@ -239,14 +239,6 @@ CREATE TABLE `emp` (
   `fingerprint10` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `emp`
---
-
-INSERT INTO `emp` (`f_name`, `l_name`, `mobile`, `aadhar_no`, `pan_no`, `dob`, `time`, `image_name`, `id`, `latitude`, `longitude`, `fingerprint`, `fingerprint2`, `fingerprint3`, `fingerprint4`, `fingerprint5`, `fingerprint6`, `fingerprint7`, `fingerprint8`, `fingerprint9`, `fingerprint10`) VALUES
-('dhd', 'hdhdh', '6464', '466464', 'dhdd', '2021-10-28', '2021-10-07 19:03:19', '2', 29, 77.6907, 0, 'w', 'e', 'q', '4', 't', 'y', 'u', 'i', 'o', 'p'),
-('hdhf', 'jdhdh', '77464', 'hdhd', '7474', '2021-10-28', '2021-10-07 19:15:22', '4', 29, 77.6907, 0, 's', 'd', 'a', '4', 'g', 'h', 'j', 'k', 'l', 'z');
-
 -- --------------------------------------------------------
 
 --
@@ -261,17 +253,9 @@ CREATE TABLE `employee` (
   `pan_no` varchar(16) DEFAULT NULL,
   `dob` date DEFAULT NULL,
   `time` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `image_name` text NOT NULL,
+  `image_name` text DEFAULT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `employee`
---
-
-INSERT INTO `employee` (`f_name`, `l_name`, `mobile`, `aadhar_no`, `pan_no`, `dob`, `time`, `image_name`, `id`) VALUES
-('dhd', 'hdhdh', '6464', '466464', 'dhdd', '2021-10-28', '2021-10-07 19:03:19', 'gf', 2),
-('hdhf', 'jdhdh', '77464', 'hdhd', '7474', '2021-10-28', '2021-10-07 19:15:22', 'tr', 4);
 
 -- --------------------------------------------------------
 
@@ -280,7 +264,7 @@ INSERT INTO `employee` (`f_name`, `l_name`, `mobile`, `aadhar_no`, `pan_no`, `do
 --
 
 CREATE TABLE `employees` (
-  `id` int(11) NOT NULL,
+  `id` varchar(255) NOT NULL,
   `employee_id` varchar(200) DEFAULT NULL,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
@@ -294,18 +278,11 @@ CREATE TABLE `employees` (
   `created_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `aadhar` varchar(16) DEFAULT NULL,
   `pan` varchar(200) DEFAULT NULL,
-  `image_name` varchar(100) DEFAULT NULL
+  `image_name` varchar(100) DEFAULT NULL,
+  `user_email` text DEFAULT NULL,
+  `latitude` float DEFAULT NULL,
+  `longitude` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employees`
---
-
-INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `address`, `birthdate`, `contact_info`, `gender`, `position_id`, `schedule_id`, `photo`, `created_on`, `aadhar`, `pan`, `image_name`) VALUES
-(1, NULL, 'f', 'f', NULL, '2021-10-21', '74743', NULL, NULL, NULL, 'http://192.168.1.106:80/Android/0.png', '2021-10-05 08:31:33', '8744', 'xxd', 'jas'),
-(2, NULL, 'rahul', 'sharma', NULL, '2021-10-27', '6646', NULL, NULL, NULL, 'http://192.168.1.106:80/Android/1.png', '2021-10-05 08:31:33', '38764', 'hdhdh', 'pan'),
-(3, NULL, 'js', 'dd', NULL, '2021-10-18', '345', NULL, NULL, NULL, 'http://192.168.1.106:80/Android/4.png', '2021-10-05 08:31:33', '445', 'fff', 'gh'),
-(4, NULL, 'rty', 'fyyh', NULL, '2021-10-06', '456', NULL, NULL, NULL, 'http://192.168.1.106:80/Android/5.png', '2021-10-05 08:31:33', '4567', 'dg', 'rts');
 
 -- --------------------------------------------------------
 
@@ -346,12 +323,9 @@ CREATE TABLE `photo` (
 --
 
 INSERT INTO `photo` (`id`, `image_path`, `image_name`) VALUES
-(1, 'http://192.168.1.106:80/Android/0.png', 'jas'),
-(2, 'http://192.168.1.106:80/Android/1.png', 'pan'),
-(3, 'http://192.168.1.106:80/Android/2.png', 'fd'),
-(4, 'http://192.168.1.106:80/Android/3.png', 'qww'),
-(5, 'http://192.168.1.106:80/Android/4.png', 'gh'),
-(6, 'http://192.168.1.106:80/Android/5.png', 'rts');
+(1, 'http://192.168.1.106:80/Android/0.png', '1'),
+(3, 'http://192.168.1.106:80/Android/1.png', '4'),
+(4, 'http://192.168.1.106:80/Android/5', '5');
 
 -- --------------------------------------------------------
 
@@ -387,6 +361,18 @@ INSERT INTO `position` (`id`, `description`, `rate`) VALUES
 (3, 'Marketing ', 35),
 (4, 'Graphic Designer', 75),
 (5, 'labor', 38);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project`
+--
+
+CREATE TABLE `project` (
+  `id` int(11) NOT NULL,
+  `p_id` text NOT NULL,
+  `s_id` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -452,18 +438,19 @@ CREATE TABLE `userlogintable` (
   `first_name` text DEFAULT NULL,
   `last_name` text DEFAULT NULL,
   `user_email` text DEFAULT NULL,
-  `user_password` text DEFAULT NULL
+  `user_password` text DEFAULT NULL,
+  `s_id` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `userlogintable`
 --
 
-INSERT INTO `userlogintable` (`id`, `first_name`, `last_name`, `user_email`, `user_password`) VALUES
-(1, 'jas', 'singh', 'singhj775@gmail.com', 'abc@123'),
-(2, 'jaa', 'singh', 'ss', 'abc@123'),
-(3, 'Ramekbal', 'kumar', 'Ramekbal', 'ramekbal001@'),
-(4, 'jas', 'singh', 'ss@ss.com', 'abc@123');
+INSERT INTO `userlogintable` (`id`, `first_name`, `last_name`, `user_email`, `user_password`, `s_id`) VALUES
+(1, 'jas', 'singh', 'singhj775@gmail.com', 'abc@123', ''),
+(2, 'jaa', 'singh', 'ss', 'abc@123', ''),
+(3, 'Ramekbal', 'kumar', 'Ramekbal', 'ramekbal001@', ''),
+(4, 'jas', 'singh', 'ss@ss.com', 'abc@123', '');
 
 -- --------------------------------------------------------
 
@@ -536,6 +523,12 @@ ALTER TABLE `attendance_check`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `biometric`
+--
+ALTER TABLE `biometric`
+  ADD KEY `par_ind` (`id`);
+
+--
 -- Indexes for table `cashadvance`
 --
 ALTER TABLE `cashadvance`
@@ -560,7 +553,8 @@ ALTER TABLE `devices`
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `aadhar_no` (`aadhar_no`),
-  ADD UNIQUE KEY `pan_no` (`pan_no`);
+  ADD UNIQUE KEY `pan_no` (`pan_no`),
+  ADD UNIQUE KEY `image_name` (`image_name`) USING HASH;
 
 --
 -- Indexes for table `employees`
@@ -595,6 +589,12 @@ ALTER TABLE `photo1`
 -- Indexes for table `position`
 --
 ALTER TABLE `position`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `project`
+--
+ALTER TABLE `project`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -644,12 +644,6 @@ ALTER TABLE `attendance`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `attendance_check`
---
-ALTER TABLE `attendance_check`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `cashadvance`
 --
 ALTER TABLE `cashadvance`
@@ -671,13 +665,7 @@ ALTER TABLE `devices`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `employees`
---
-ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `overtime`
@@ -689,7 +677,7 @@ ALTER TABLE `overtime`
 -- AUTO_INCREMENT for table `photo`
 --
 ALTER TABLE `photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `photo1`
@@ -704,6 +692,12 @@ ALTER TABLE `position`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
@@ -714,12 +708,6 @@ ALTER TABLE `schedules`
 --
 ALTER TABLE `sharp_emp`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `userlogintable`
---
-ALTER TABLE `userlogintable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `userlogintable1`

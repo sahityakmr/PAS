@@ -1,6 +1,10 @@
 <?php
 // session_start();
+
+$response = [];
+
 if($_SERVER['REQUEST_METHOD']=='POST'){
+    $response['failed'] = false;
 include 'DatabaseConfig.php';
 include 'guid.php'; 
  $con = mysqli_connect($HostName,$HostUser,$HostPass,$DatabaseName);
@@ -24,19 +28,24 @@ include 'guid.php';
 $new_GUID = createGUID();
 //echo "GUID :: ".$new_GUID;
 
+
+
   $Sql_Query = "insert into employees (id,firstname,lastname,contact_info,aadhar,pan,birthdate,image_name,address,user_email,employee_id) values ('$a','$f_name','$l_name','$mobile','$aadhar_no','$pan_no','$dob','$imageid','$address','$supervisor','$new_GUID')";
  
  if(mysqli_query($con,$Sql_Query))
 {
  
- echo 'Data Submit Successfully';
- 
+    $response['success'] = true;
+    $response['body']['id'] = $a;
+ //header("Location: http://www.example.com/another-page.php");
+ //exit();
  session_destroy();
  
  }
  else{
- 
- echo 'Try Again';
+
+ $response['success'] = false;
+ //echo 'Try Again';
  
  }
 
@@ -44,7 +53,8 @@ $new_GUID = createGUID();
 
  }
 else{    
-echo 'do again';
+   $response['failed'] = true;
 }
 
+echo json_encode($response);
 ?>

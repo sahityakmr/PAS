@@ -3,7 +3,6 @@
  if($_SERVER['REQUEST_METHOD']=='POST'){
 
  include 'DatabaseConfig.php';
- 
  $con = mysqli_connect($HostName,$HostUser,$HostPass,$DatabaseName);
  
  $email = $_POST['email'];

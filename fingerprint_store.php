@@ -1,9 +1,11 @@
 <?php
 // session_start();
+include 'guid.php'; 
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 include 'DatabaseConfig.php' ;
 include 'get_data.php'; 
+include 'guid.php'; 
  $con = mysqli_connect($HostName,$HostUser,$HostPass,$DatabaseName);
  $lat = $_POST['lat'];
  $longi = $_POST['longi'];
@@ -21,22 +23,10 @@ include 'get_data.php';
  settype($lat,'float');
  settype($longi,'float');
  $imageid =$_POST['imageid'];
-
-lat:
-longi:
-file:
-file2:
-file3:
-file4:
-file5:
-file6:
-file7:
-file8:
-file9:
-file10:
+ $new_GUID = createGUID();
 
 
- $quert = "insert into biometric (latitude,longitude,fingerprint,fingerprint2,fingerprint3,fingerprint4,fingerprint5,fingerprint6,fingerprint7,fingerprint8,fingerprint9,fingerprint10,image_name) values ('$lat','$longi','$file','$file2','$file3','$file4','$file5','$file6','$file7','$file8','$file9','$file10','$imageid')";
+ $quert = "insert into biometric (latitude,longitude,fingerprint,fingerprint2,fingerprint3,fingerprint4,fingerprint5,fingerprint6,fingerprint7,fingerprint8,fingerprint9,fingerprint10,image_name,id) values ('$lat','$longi','$file','$file2','$file3','$file4','$file5','$file6','$file7','$file8','$file9','$file10','$imageid','$new_GUID')";
  if(mysqli_query($con,$quert))
     {
  

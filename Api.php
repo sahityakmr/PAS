@@ -1,11 +1,16 @@
 <?php 
  
+if($_SERVER['REQUEST_METHOD']=='POST'){
 
+ include 'DatabaseConfig.php';
+ $con = mysqli_connect($HostName,$HostUser,$HostPass,$DatabaseName);
  
+ $email = $_POST['file'];
+ }
  //database constants
  define('DB_HOST', 'localhost');
  define('DB_USER', 'root');
- define('DB_PASS', '');
+ define('DB_PASS', 'abc@123');
  define('DB_NAME', 'apsystem');
  
  //connecting to database and getting the connection object
