@@ -7,7 +7,7 @@ $HostName = "localhost";
 $HostUser = "root";
 
 //Define your database password here.
-$HostPass = "abc@123";
+$HostPass = "";
 
 //Define your database name here.
 $DatabaseName = "apsystem";

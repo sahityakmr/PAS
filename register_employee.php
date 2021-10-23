@@ -1,9 +1,6 @@
 <?php
-// session_start();
-
 $response = [];
-
-if($_SERVER['REQUEST_METHOD']=='POST'){
+if(isset($_POST)){
     $response['failed'] = false;
 include 'DatabaseConfig.php';
 include 'guid.php'; 
@@ -31,15 +28,14 @@ $new_GUID = createGUID();
 
 
   $Sql_Query = "insert into employees (id,firstname,lastname,contact_info,aadhar,pan,birthdate,image_name,address,user_email,employee_id) values ('$a','$f_name','$l_name','$mobile','$aadhar_no','$pan_no','$dob','$imageid','$address','$supervisor','$new_GUID')";
- 
+
  if(mysqli_query($con,$Sql_Query))
 {
  
     $response['success'] = true;
     $response['body']['id'] = $a;
- //header("Location: http://www.example.com/another-page.php");
  //exit();
- session_destroy();
+// session_destroy();
  
  }
  else{
