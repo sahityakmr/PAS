@@ -1,4 +1,8 @@
-﻿var uri = "https://localhost:8003/mfs100/";  //Secure
+
+
+anyMatch(process.argv[2], process.argv[3]);
+
+var uri = "https://localhost:8003/mfs100/";  //Secure
 //var uri = "http://localhost:8004/mfs100/"; //Non-Secure
 
 var KeyFlag = "";
@@ -33,8 +37,6 @@ function CaptureFinger(quality, timeout) {
     return PostMFS100Client("capture", jsondata);
 }
 function VerifyFinger(ProbFMR, GalleryFMR) {
-    console.log("in mfs");
-    return true;
     if (!PrepareScanner()) {
         return getFalseRes();
     }
@@ -93,6 +95,7 @@ function GetProtoRbdData(BiometricArray) {
 }
 
 function PostMFS100Client(method, jsonData) {
+    console.log(jsonData);
     var res;
     $.support.cors = true;
     var httpStaus = false;
@@ -183,7 +186,7 @@ function PrepareScanner() {
             else {
                 isGetSuccess = true;
             }
-           
+
             if (KeyFlag !=  null && KeyFlag != 'undefined' && KeyFlag.length > 0) {
                 var MFS100Request = {
                     "Key": KeyFlag,
@@ -201,4 +204,12 @@ function getFalseRes()
     var res;
     res = { httpStaus: false, err: "Error while calling service" };
     return res;
+}
+
+function anyMatch(currFinger, storeFinger){
+    // console.log("#currFinger#"+currFinger+"#");
+    // console.log("@storeFinger@"+storeFinger+"@");
+    // console.log("\nTrying to match" + currFinger + " and " + storeFinger+"\n");
+    return VerifyFinger(currFinger, storeFinger);
+    //return true;
 }
