@@ -53,4 +53,7 @@ else{
 }
 
 echo json_encode($response);
+$mobile = $_GET['$a'];
+ $usertype = $_GET['$new_GUID'];
+
 ?>

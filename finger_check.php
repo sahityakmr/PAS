@@ -1,11 +1,12 @@
 <?php
  include 'DatabaseConfig.php';
+ include 'utils.php';
 
 $con = mysqli_connect($HostName, $HostUser, $HostPass, $DatabaseName);
 
 function anyMatch($fp, $fingerprints){
     foreach ($fingerprints as $value) {
-        if ($fp == $value)
+        if (matchFingerPrint($fp, $value))
             return true;
     }
     return false;
@@ -77,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     //$FINGERSTRING = $_POST['Fg'];
-    $FINGERSTRING = "s";
+    $FINGERSTRING = "r";
     // $latitude = $_POST['lat'];
     // $longitude = $_POST['longi'];
     $latitude = 43.57;
